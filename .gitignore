@@ -1,0 +1,4 @@
+#Environments
+.env
+#BaseDate
+db.sqlite3
