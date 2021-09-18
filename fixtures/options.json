@@ -1,0 +1,65 @@
+[
+  {
+    "model": "motorpool.option",
+    "pk": 1,
+    "fields": {
+      "title": "Детское кресло"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 2,
+    "fields": {
+      "title": "Просторный салон"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 3,
+    "fields": {
+      "title": "Тихий салон и плавный ход"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 4,
+    "fields": {
+      "title": "Широкие подлокотники"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 5,
+    "fields": {
+      "title": "Зарядка для телефона"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 6,
+    "fields": {
+      "title": "Водитель в деловом костюме"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 7,
+    "fields": {
+      "title": "Кожанный салон с фоновой подсветкой"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 8,
+    "fields": {
+      "title": "Столик для ноутбука"
+    }
+  },
+  {
+    "model": "motorpool.option",
+    "pk": 9,
+    "fields": {
+      "title": "Мультиконтурные кресла"
+    }
+  }
+]
