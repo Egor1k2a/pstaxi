@@ -8,5 +8,4 @@ def generate_unique_slug(model, value):
     while model.objects.filter(slug=unique_slug).exists():
         unique_slug = f'{unique_slug}-{count}'
         count += 1
-
     return unique_slug
