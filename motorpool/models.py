@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from utils.models import generate_unique_slug
 
 
@@ -8,6 +10,9 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('motorpool:brand_detail', args=[str(self.pk)])
 
     def save(self, *args, **kwargs):
         self.slug = generate_unique_slug(Brand, self.title)

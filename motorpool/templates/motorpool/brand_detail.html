@@ -1,0 +1,15 @@
+{% extends "__base.html" %}
+
+{% block title %}Детальная страница бренда{% endblock %}
+
+{% block content %}
+<h1>Бренд "{{ brand }}"</h1>
+<hr>
+{% include "motorpool/_brand_number.html" %}
+<p>Все автомобили бренда {{ brand }}:</p>
+<ol>
+    {% for car in cars %}
+        <li>{{ car.number }} ({{ car.year }})</li>
+    {% endfor %}
+</ol>
+{% endblock %}

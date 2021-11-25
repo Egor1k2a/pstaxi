@@ -1,15 +1,14 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список брендов</title>
-</head>
-<body>
+{% extends "__base.html" %}
+
+{% block title %}Список брендов{% endblock %}
+
+{% block content %}
 <h1>Список брендов</h1>
 <hr>
-<p>Автопарк psTaxi - это {{ brand_number }} {{ brand_plural_form }}</p>
-</body>
-</html>
+{% include "motorpool/_brand_number.html" %}
+<ul>
+    {% for brand in brand_objects %}
+        <li><a href="{{ brand.get_absolute_url }}">{{ brand.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
