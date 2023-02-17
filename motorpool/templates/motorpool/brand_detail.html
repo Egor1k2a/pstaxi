@@ -1,15 +1,89 @@
 {% extends "__base.html" %}
 
-{% block title %}Детальная страница бренда{% endblock %}
+{% block title %}PS-Taxi - список брендов{% endblock %}
 
 {% block content %}
-<h1>Бренд "{{ brand }}"</h1>
-<hr>
-{% include "motorpool/_brand_number.html" %}
-<p>Все автомобили бренда {{ brand }}:</p>
-<ol>
-    {% for car in cars %}
-        <li>{{ car.number }} ({{ car.year }})</li>
-    {% endfor %}
-</ol>
+
+{% with brand.title as header %}
+    {% include "snippets/_wrapper.html" %}
+{% endwith %}
+
+<!-- START CAR DETAIL AREA -->
+<div class="padding-bottom-90px">
+    <div class="section-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="single-content-nav">
+                        <ul>
+                            <li><a href="#description" class="text-decoration-none active">Описание</a></li>
+                            <li><a href="#cars" class="text-decoration-none">Автомобили</a></li>
+                            <li><a href="#reviews" class="text-decoration-none">Отзывы</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 id="description" class="py-4 mt-4">{{ brand.title }}</h3>
+                <img src="{{ brand.logo_url }}" alt="brand" class="avatar-xxl img-fluid">
+                <p class="py-4">Количество автомобилей: {{ cars.count }}</p>
+                <hr>
+                <div id="cars" class="py-4 mt-4">
+                    <h3 class="mb-3">Автомобили бренда</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Класс авто</th>
+                                <th scope="col">Гос. номер</th>
+                                <th scope="col">Год выпуска</th>
+                                <th scope="col">Объем двигателя</th>
+                                <th scope="col">Мощность двигателя</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for car in cars %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ car.get_auto_class_display }}</td>
+                                <td>{{ car.number }}</td>
+                                <td>{{ car.year }}</td>
+                                <td>{{ car.pts.engine_volume }}</td>
+                                <td>{{ car.pts.engine_power }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div id="reviews" class="py-4 mt-4">
+                    <h3 class="mb-3">Оценка бренда</h3>
+                    <div class="col-lg-4">
+                        <div class="review-summary">
+                            <h2>4.5<span>/5</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="py-4 mt-4">
+                    <h3>Отзывы о бренде</h3>
+                    <h4 class="mt-3">Jenny Doe</h4>
+                    <p class="text-muted">April 5, 2019</p>
+                    <p>Ездил по москве. Все гуд:)</p>
+                </div>
+                <a href="{% url 'motorpool:brand_update' brand.pk %}" class="btn btn-lg btn-primary mt-4">Редактировать</a>
+                <a href="{% url 'motorpool:brand_delete' brand.pk %}" class="btn btn-lg btn-danger mt-4">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END CAR DETAIL -->
+
+{% include "snippets/_cta.html" %}
+
 {% endblock %}

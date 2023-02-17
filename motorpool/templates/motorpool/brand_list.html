@@ -1,14 +1,38 @@
 {% extends "__base.html" %}
-
-{% block title %}Список брендов{% endblock %}
+{% load pstaxitags %}
+{% block title %}PS-Taxi - список брендов{% endblock %}
 
 {% block content %}
-<h1>Список брендов</h1>
-<hr>
-{% include "motorpool/_brand_number.html" %}
-<ul>
-    {% for brand in brand_objects %}
-        <li><a href="{{ brand.get_absolute_url }}">{{ brand.title }}</a></li>
-    {% endfor %}
-</ul>
+
+{% with "Бренды автомобилей PS-Taxi" as header %}
+    {% include "snippets/_wrapper.html" %}
+{% endwith %}
+
+<!-- START CARD -->
+<div class="container my-4 py-4">
+    <h3>{{ brand_number }} {% plural brand_number "бренд автомобиля" "бренда автомобилей" "брендов автомобилей" %}</h3>
+    <p>Выбери лучшее авто на свой вкус</p>
+    <a href="{% url 'motorpool:brand_create' %}" class="btn btn-primary">Добавить бренд</a>
+    <div class="row py-4 my-4">
+        {% for brand in brand_list %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <a href="{{ brand.get_absolute_url }}" class="text-center">
+                    <img src="{{ brand.logo_url }}" class="card-img-top avatar-xxl" alt="{{ brand.title }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ brand.get_absolute_url }}" class="text-decoration-none">{{ brand.title }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include "snippets/_pagination.html" %}
+</div>
+<!-- END CARD -->
+
+{% include "snippets/_cta.html" %}
+
 {% endblock %}

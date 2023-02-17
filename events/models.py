@@ -65,7 +65,7 @@ class Event(models.Model):
                 places_left = self.get_places_left()
             if places_left == 0:
                 legend = Event.FULLNESS_LEGEND_FULL
-            if places_left < int(self.participants_number or 0) / 2:
+            elif places_left < int(self.participants_number or 0) / 2:
                 legend = Event.FULLNESS_LEGEND_MIDDLE
         return legend
 

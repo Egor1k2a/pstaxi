@@ -1,0 +1,18 @@
+{% extends "__base.html" %}
+{% block title %}Удаление бренда{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Бренд "{{ brand }}"</h1>
+            <hr>
+            <p>Вы действительно хотите удалить бренд?</p>
+            <p><a href="{% url 'motorpool:brand_list' %}">Список брендов</a></p>
+            <form action="." method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

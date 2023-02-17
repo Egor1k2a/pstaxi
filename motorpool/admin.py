@@ -44,7 +44,7 @@ class AutoAdmin(admin.ModelAdmin):
     list_filter = [EnginePowerFilter, 'auto_class', 'options', 'brand', ]
     search_fields = ['brand__title', 'number', ]
     filter_horizontal = ['options', ]
-    fields = ['id', 'number', 'description', ('year', 'auto_class'), 'brand', 'options', ]
+    fields = ['id', 'number', 'description', ('year', 'auto_class'), 'brand', 'logo', 'options', ]
 
 
 @admin.register(models.Option)

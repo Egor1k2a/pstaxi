@@ -1,0 +1,52 @@
+{% extends "__base.html" %}
+{% block title %}Отправка email{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Отправка письма на e-mail</h1>
+            <form action="." method="post">
+                {% csrf_token %}
+                <p>{{ form.name }}</p>
+                {% if form.name.errors %}
+                <div class="alert alert-danger">
+                    {{ form.name.errors }}
+                </div>
+                {% endif %}
+                <p>{{ form.email }}</p>
+                {% if form.email.errors %}
+                <div class="alert alert-danger">
+                    {{ form.email.errors }}
+                </div>
+                {% endif %}
+                <p>{{ form.comment }}</p>
+                <div class="form-check">
+                    {{ form.checkbox1 }}
+                    <label class="form-check-label" for="{{ form.checkbox1.id_for_label }}">
+                        {{ form.checkbox1.label }}
+                    </label>
+                </div>
+                <div class="form-check">
+                    {{ form.checkbox2 }}
+                    <label class="form-check-label" for="{{ form.checkbox2.id_for_label }}">
+                        {{ form.checkbox2.label }}
+                    </label>
+                </div>
+                <p>{{ form.amount }}</p>
+                <p>{{ form.variant }}</p>
+                <p>{{ form.variants }}</p>
+                {% if form.variants.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.variants.errors %}
+                    <p><b>Ошибка №{{ forloop.counter }}.</b> {{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <button type="submit" name="btn_action" value="action1" class="btn btn-primary">Кнопка 1</button>
+                <button type="submit" name="btn_action" value="action2" class="btn btn-outline-success">Кнопка 2</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

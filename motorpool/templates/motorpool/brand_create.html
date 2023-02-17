@@ -1,0 +1,29 @@
+{% extends "__base.html" %}
+
+{% block title %}Добавление нового бренда{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Добавление нового бренда</h1>
+            {{ form.non_field_errors }}
+            <form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="mb-3">
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Создать бренд</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
